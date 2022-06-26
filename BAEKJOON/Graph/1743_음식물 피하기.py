@@ -3,7 +3,6 @@ input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
 
 def dfs(y, x, cnt):
-    
     forest[y][x] = 0
 
     for i in range(4):
@@ -15,6 +14,7 @@ def dfs(y, x, cnt):
                 cnt = dfs(ny, nx, cnt + 1)
     
     return cnt
+
 
 N, M, K = map(int, input().split())
 forest = [[0]*(M+1) for _ in range(N+1)]
@@ -31,7 +31,6 @@ answer = 0
 for i in range(1, N + 1):
     for j in range(1, M + 1):
         if forest[i][j] == 1:
-            count = 1
-            answer = max(answer, dfs(i, j, count))
+            answer = max(answer, dfs(i, j, 1))
 
 print(answer)
