@@ -1,3 +1,5 @@
+# https://star-mind-f7b.notion.site/11660-5-b5ab3a7463074a4090b5423f1ceba6a7
+
 import sys
 input = sys.stdin.readline
 
