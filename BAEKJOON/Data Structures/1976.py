@@ -5,10 +5,10 @@ import sys
 input = sys.stdin.readline
 
 def find(target):
-    if target != parent[target]:
-        parent[target] = find(parent[target])
+    if target != parents[target]:
+        parents[target] = find(parents[target])
     
-    return parent[target]
+    return parents[target]
 
 def union(a, b):
     a = find(a)
@@ -16,15 +16,16 @@ def union(a, b):
     
     # 부모를 합칠 때는 일반적으로 더 작은 값 쪽으로 합친다.
     if a < b:
-        parent[b] = a
+        parents[b] = a
     else:
-        parent[a] = b
+        parents[a] = b
 
 N, M = int(input()), int(input())
-parent = [i for i in range(N+1)]
-# 인덱스 번호는 '노드 번호'를 의미한다.
-# 첫 번째 행은 '부모 노드 번호'를 의미한다.
+parents = [i for i in range(N+1)]
+# 첫 번째 행(인덱스 번호)은 '노드 번호'를 의미한다.
+# 두 번째 행은 '부모 노드 번호'를 의미한다.
 # the number of city start from 1 to N
+# range(N+1)로 하면 "0, 1, ..., N"로 리스트가 생성된다.
 for i in range(1, N+1):
     link = list(map(int, input().split()))
     for j in range(N):
@@ -33,7 +34,7 @@ for i in range(1, N+1):
 
 path = list(map(int, input().split()))
 for i in range(M):
-    if parent[path[i]] != parent[path[0]]:
+    if parents[path[i]] != parents[path[0]]:
         print('NO')
         break
 else:  
